@@ -14,9 +14,9 @@ const mdFile = resolve( 'example','README.md')
 
 var mdHeader
 
-return fs.readFileAsync( resolve('test','exampleHeader.md'),'utf8')
+return fs.readFileAsync( resolve('extra','exampleHeader.md'),'utf8')
 .then( ( header ) => mdHeader = header )
-.then( () => fs.readFileAsync( resolve( 'test','examples.yaml' ), 'utf8' ) )
+.then( () => fs.readFileAsync( resolve( 'extra','examples.yaml' ), 'utf8' ) )
 .then( yaml.load )
 .mapSeries( eachExample )
 .then( ( markdowns ) => mdHeader + markdowns.join('\n\n') )

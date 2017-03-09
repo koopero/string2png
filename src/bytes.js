@@ -5,14 +5,21 @@ module.exports = function bytes( data, options ) {
   options = options || {}
   let bytes = parseInt( options['bytes'] ) || 1
 
-  if ( bytes != 1 )
-    throw new Error('Only uint_8 currently supported')
-
-  let k = data.length
+  let k = data.length / bytes
   let result = new Array()
 
-  for ( let i = 0; i < k; i ++ )
-    result[i] = data.readUInt8( i ) / 255.0
+  switch ( bytes ) {
+    case 1:
+      for ( let i = 0; i < k; i ++ )
+        result[i] = data.readUInt8( i ) / 255.0
+    break
+
+    case 4:
+      for ( let i = 0; i < k; i ++ )
+        result[i] = data.readFloatBE( i * 4 )
+    break
+  }
+
 
   return result
 }

@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "Convert strings in various formats to tiny images",
   "main": "index.js",
+  "browser": "browser.js",
   "bin": {
     "string2png": "./src/cli.js"
   },

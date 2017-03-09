@@ -11,6 +11,15 @@ string2png  ff0000 00ff00 0000ff -o example/rgb.png
 ![string2png  ff0000 00ff00 0000ff -o example/rgb.png](rgb-enlarged.png)
 
 
+## blank
+
+Single, transparent pixel
+``` sh
+string2png --width 1 --height 1 --background transparent  -o example/blank.png
+```
+![string2png --width 1 --height 1 --background transparent  -o example/blank.png](blank-enlarged.png)
+
+
 ## rainbow
 
 Create an HSV rainbow using the 'h' channel
@@ -31,7 +40,7 @@ string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.p
 
 ## alpha
 
-Transparency
+Transparency using the 'a' channel
 ``` sh
 string2png --encoding hex2 --channels a --background green 048cf -o example/alpha.png
 ```

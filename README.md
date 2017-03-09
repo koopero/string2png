@@ -1,4 +1,10 @@
+`string2png` is a small, flexible utility to compile strings to PNG images files.
+It is intended to ease the creation of extremely low resolution graphical assets
+such as gradient and patterns.
+
 # Examples
+
+*Note: All images have been scaled up 64x to ease viewing.*
 
 ## rgb
 
@@ -17,4 +23,4 @@ string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.p
 ![string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.png](example/checkerboard-enlarged.png)
 
 
-See [example/README.md](example/README.md) for plenty more examples.
+See [example/README.md](example/README.md) for more examples.

@@ -15,4 +15,12 @@ describe('bytes', () => {
       assert.equal( result.length, 4 )
     })
   })
+
+  describe('float', () => {
+    it('will bring in float data', () => {
+      const result = bytes('0 0.2 -0.25 0.6', { encoding: 'float' } )
+      assert.equal( result.length, 4 )
+      assert.equal( result[2], -0.25 )
+    })
+  })
 })

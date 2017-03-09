@@ -3,6 +3,14 @@
   data: ff0000 00ff00 0000ff
   options: {}
 
+- name: blank
+  description: Single, transparent pixel
+  data: ''
+  options:
+    width: 1
+    height: 1
+    background: transparent
+
 - name: rainbow
   description: Create an HSV rainbow using the 'h' channel
   data: 02468ace

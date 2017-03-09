@@ -15,4 +15,11 @@ describe('encoding', () => {
       assert.equal( result.length, 4 )
     })
   })
+
+  describe('percent', () => {
+    it('will ignore whitespace', () => {
+      const result = encoding('50 25 0 100', { encoding: 'percent'} )
+      assert.equal( result.length, 16 ) // sizeof(float) * 4
+    })
+  })
 })
