@@ -1,6 +1,6 @@
 {
   "name": "string2png",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "description": "Convert strings in various formats to tiny images",
   "main": "index.js",
   "bin": {
@@ -13,13 +13,14 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "deepcolour": "^1.0.0",
+    "deepcolour": "^1.2.0",
     "get-stdin": "^5.0.1",
     "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
     "pngjs": "^3.0.1"
   },
   "devDependencies": {
-      "chai": "^3.5.0"
+    "chai": "^3.5.0"
   },
   "repository": {
     "type": "git",
@@ -40,5 +41,4 @@
     "url": "https://github.com/koopero/string2png/issues"
   },
   "homepage": "https://github.com/koopero/string2png#readme"
-
 }

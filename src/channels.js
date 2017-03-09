@@ -1,11 +1,9 @@
-module.exports = colours
-
-const bytes = require('./bytes')
-    , fill = require('./fill')
+const fill = require('./fill')
     , Colour = require('deepcolour')
 
-function colours( data, options ) {
-  data = bytes( data, options )
+module.exports = function channels( data, options ) {
+  if ( !Array.isArray( data ) )
+    data = require('./bytes')( data, options )
 
   options = options || {}
 
@@ -27,7 +25,7 @@ function colours( data, options ) {
     return []
 
   let stride = options.stride = parseInt( options.stride ) || channels.length
-  let length = Math.floor( data.length / stride )
+  let length = Math.ceil( data.length / stride )
   let result = fill( [], length, options )
 
   for ( let index = 0; index < length; index ++ ) {

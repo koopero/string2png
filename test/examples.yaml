@@ -1,0 +1,28 @@
+- name: rgb
+  description: Simple 3-pixel png
+  data: ff0000 00ff00 0000ff
+  options: {}
+
+- name: rainbow
+  description: Create an HSV rainbow using the 'h' channel
+  data: 02468ace
+  options:
+    encoding: hex2
+    channels: h
+    background: red
+
+- name: checkerboard
+  description: Checkboard pattern
+  data: f00f
+  options:
+    encoding: hex2
+    width: 2
+    channels: v
+
+- name: alpha
+  description: Transparency using the 'a' channel
+  data: 048cf
+  options:
+    encoding: hex2
+    channels: a
+    background: green

@@ -1,9 +1,6 @@
-module.exports = bytes
-
-const encoding = require('./encoding')
-
-function bytes( data, options ) {
-  data = encoding( data, options )
+module.exports = function bytes( data, options ) {
+  if ( !Buffer.isBuffer( data ) )
+    data = require('./encoding')( data, options )
 
   options = options || {}
   let bytes = parseInt( options['bytes'] ) || 1

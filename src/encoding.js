@@ -11,6 +11,8 @@ function decode( data, options ) {
   switch( encoding ) {
     case 'hex':
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
+      if ( data.length & 1 )
+        data = data.substr(0,data.length-1)
     break
 
     case 'hex2':
