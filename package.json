@@ -1,6 +1,6 @@
 {
   "name": "string2png",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Convert strings in various formats to tiny images",
   "main": "index.js",
   "browser": "browser.js",

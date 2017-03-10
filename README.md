@@ -62,13 +62,13 @@ let data = string2png.datauri( 'ff0000 00ff00 0000ff', options )
 
 ## Command line
 
-By default, the utility `pixels2png` will output a data URI string to stdout. To
+By default, the utility `string2png` will output a data URI string to stdout. To
 output a file, use the `--output` or `-o` option. Any non-options on the command
 line will be appended to stdin and used as input data.
 
 Make a single green pixel by piping stdin:
 ``` sh
-echo 00ff00 | pixels2png
+echo 00ff00 | string2png
 ```
 
 # Options

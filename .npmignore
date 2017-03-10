@@ -2,3 +2,4 @@ example/
 test/
 extra/
 node_modules/
+npm-debug.log
