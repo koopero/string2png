@@ -46,7 +46,7 @@ ${cmdStr}
 
   console.log(cmdStr)
   return output( data, destAbs, options )
-  .then( () => exec('convert {{ destAbs }} -interpolate Nearest -filter Point -resize 6400% {{ enlarged }}', { destAbs, enlarged } ) )
+  .then( () => exec('convert {{ destAbs }} -interpolate Nearest -filter Point -resize 6400% -define png:format=png32 -strip {{ enlarged }}', { destAbs, enlarged } ) )
   .then( () => markdown )
 
 }

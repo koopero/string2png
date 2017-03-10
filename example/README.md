@@ -81,3 +81,12 @@ Simple tilable 5x5 grid pattern.
 string2png --encoding float --channels v --width 5 data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0 -o example/grid.png
 ```
 ![string2png --encoding float --channels v --width 5 data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0 -o example/grid.png](grid-enlarged.png)
+
+
+## ignore
+
+Use null channels to ignore extraneous data.
+``` sh
+string2png --channels rgb000 ff00ffEEEEEE ffff00EEEEEE -o example/ignore.png
+```
+![string2png --channels rgb000 ff00ffEEEEEE ffff00EEEEEE -o example/ignore.png](ignore-enlarged.png)
