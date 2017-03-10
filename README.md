@@ -24,3 +24,72 @@ string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.p
 
 
 See [example/README.md](example/README.md) for more examples.
+
+
+# Usage
+
+## Javascript
+
+``` js
+const string2png = require('string2png')
+
+// Write to a PNG file
+string2png.output( 'f00 0f0 00f', 'outputfile.png', { encoding: 'hex2' } )
+  .then( () => console.log('Wrote file') )
+
+// Return PNG as buffer
+let buffer = string2png.png( 'ff0000 00ff00 0000ff' )
+
+// Return PNG as data URI
+let data = string2png.datauri( 'ff0000 00ff00 0000ff' )  
+```
+
+
+## Command line
+
+By default, the utility `pixels2png` will output a data URI string to stdout. To
+output a file, use the `--output` or `-o` option. Any non-options on the command
+line will be appended to stdin and used as input data.
+
+Make a single green pixel by piping stdin:
+``` sh
+echo 00ff00 | pixels2png
+```
+
+# Options
+
+### encoding
+
+- **hex** *default* - Parse hexadecimal data like CSS colours. All non-hex input will be ignored. Example: `ff0000`
+- **hex2** - Parse CSS-style short hex data. Each hex digit will be a single value. Example: `f00`
+- **float** - Search input data for all substrings that look like numbers. Any delimiter maybe be used. Example: `0.5 0 0 - CSS maroon`
+- **percent** - Like `float`, except divide by `100`. Example: `0 100% 100 - CSS Aqua`
+- **decimal** -  Like `float`, except divide by `255`. Example: `220,20,60 - CSS Crimson`
+
+
+### channels
+
+Any unrecognized channel will be parsed and thrown out, allowing padding within data. Example:
+``` js
+let data = 'aabbccEE aabbccEE'
+// The 'EE' portions of the data will be ignored.
+data = pixels2png.datauri( data, { channels: 'rgb0' } )
+```
+
+### width
+
+The width, in pixels, of the output file. If `width` is not specified, it will default to
+the length of parsed colour data, giving a `height` of `1`. If `width` is specified, the
+length of data will be rounded up to the nearest divisor of `width` by padding with `background`
+to ensure a rectangular output.
+
+### height
+
+If `height` is specified, the output will be cropped or padded.
+
+### background
+
+The default value to use for pixel output. Any CSS string may be used. This colour
+value can be altered by input data on a channel-by-channel basis. See example [alter-red](example/README.md#alter-red)
+
+```

@@ -45,3 +45,30 @@ Transparency using the 'a' channel
 string2png --encoding hex2 --channels a --background green 048cf -o example/alpha.png
 ```
 ![string2png --encoding hex2 --channels a --background green 048cf -o example/alpha.png](alpha-enlarged.png)
+
+
+## alter-red
+
+Use 'gb' channels to alter a red background. Input pixels are 2 bytes each.
+``` sh
+string2png --background red --channels gb 0000 ff00 00ff -o example/alter-red.png
+```
+![string2png --background red --channels gb 0000 ff00 00ff -o example/alter-red.png](alter-red-enlarged.png)
+
+
+## grayscale
+
+Use percent encoding to make a vertical gray scale.
+``` sh
+string2png --encoding percent --channels v --width 1 0 20 40 60 80 100 -o example/grayscale.png
+```
+![string2png --encoding percent --channels v --width 1 0 20 40 60 80 100 -o example/grayscale.png](grayscale-enlarged.png)
+
+
+## grid
+
+Simple tilable 5x5 grid pattern.
+``` sh
+string2png --encoding float --channels v --width 5 data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0 -o example/grid.png
+```
+![string2png --encoding float --channels v --width 5 data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0 -o example/grid.png](grid-enlarged.png)

@@ -18,6 +18,9 @@ module.exports = function bytes( data, options ) {
       for ( let i = 0; i < k; i ++ )
         result[i] = data.readFloatBE( i * 4 )
     break
+
+    default:
+      throw new Error('Invalid bytes ${bytes}. Must be 1 (uint_8) or 4 (BE float)')
   }
 
 

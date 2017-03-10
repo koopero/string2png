@@ -34,3 +34,26 @@
     encoding: hex2
     channels: a
     background: green
+
+- name: alter-red
+  description: Use 'gb' channels to alter a red background. Input pixels are 2 bytes each.
+  data: 0000 ff00 00ff
+  options:
+    background: red
+    channels: gb
+
+- name: grayscale
+  description: Use percent encoding to make a vertical gray scale.
+  data: 0 20 40 60 80 100
+  options:
+    encoding: percent
+    channels: v
+    width: 1
+
+- name: grid
+  description: Simple tilable 5x5 grid pattern.
+  data: data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0
+  options:
+    encoding: float
+    channels: v
+    width: 5
