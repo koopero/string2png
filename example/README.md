@@ -65,6 +65,15 @@ string2png --encoding percent --channels v --width 1 0 20 40 60 80 100 -o exampl
 ![string2png --encoding percent --channels v --width 1 0 20 40 60 80 100 -o example/grayscale.png](grayscale-enlarged.png)
 
 
+## hueSat
+
+Box made of various hue and saturation value.
+``` sh
+string2png --background white --encoding percent --channels hs --width 3 20 100  20 50  20 25   35 100  35 50  35 25   50 100  50 50  50 25 -o example/hueSat.png
+```
+![string2png --background white --encoding percent --channels hs --width 3 20 100  20 50  20 25   35 100  35 50  35 25   50 100  50 50  50 25 -o example/hueSat.png](hueSat-enlarged.png)
+
+
 ## grid
 
 Simple tilable 5x5 grid pattern.

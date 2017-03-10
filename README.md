@@ -33,15 +33,24 @@ See [example/README.md](example/README.md) for more examples.
 ``` js
 const string2png = require('string2png')
 
+// Default options
+const options = {
+  encoding: 'hex',
+  channels: 'rgb',
+  width: 0,
+  height: 0,
+  background: 'rgba(0,0,0,1)'
+}
+
 // Write to a PNG file
-string2png.output( 'f00 0f0 00f', 'outputfile.png', { encoding: 'hex2' } )
+string2png.output( 'ff0000 00ff00 0000ff', 'outputfile.png', options )
   .then( () => console.log('Wrote file') )
 
 // Return PNG as buffer
-let buffer = string2png.png( 'ff0000 00ff00 0000ff' )
+let buffer = string2png.png( 'ff0000 00ff00 0000ff', options )
 
 // Return PNG as data URI
-let data = string2png.datauri( 'ff0000 00ff00 0000ff' )  
+let data = string2png.datauri( 'ff0000 00ff00 0000ff', options )  
 ```
 
 
@@ -69,12 +78,10 @@ echo 00ff00 | pixels2png
 
 ### channels
 
-Any unrecognized channel will be parsed and thrown out, allowing padding within data. Example:
-``` js
-let data = 'aabbccEE aabbccEE'
-// The 'EE' portions of the data will be ignored.
-data = pixels2png.datauri( data, { channels: 'rgb0' } )
-```
+A string or array list of colour channels to be interpreted from input, in the order they are to be parsed. The default is
+`rgb`. Supported channels are `rgba` and `hsv`. See [examples](example/README.md) for many different usages of the `channels` option.  
+
+Any unrecognized channel will be parsed and thrown out, allowing padding within data.
 
 ### width
 
@@ -91,5 +98,3 @@ If `height` is specified, the output will be cropped or padded.
 
 The default value to use for pixel output. Any CSS string may be used. This colour
 value can be altered by input data on a channel-by-channel basis. See example [alter-red](example/README.md#alter-red)
-
-```

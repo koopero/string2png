@@ -50,6 +50,15 @@
     channels: v
     width: 1
 
+- name: hueSat
+  description: Box made of various hue and saturation value.
+  data: 20 100  20 50  20 25   35 100  35 50  35 25   50 100  50 50  50 25
+  options:
+    background: white
+    encoding: percent
+    channels: hs
+    width: 3
+
 - name: grid
   description: Simple tilable 5x5 grid pattern.
   data: data starts here - 0 0 1 0 0  0 0 1 0 0  1 1 1 1 1  0 0 1 0 0  0 0 1 0 0
