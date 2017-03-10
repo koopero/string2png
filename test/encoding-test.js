@@ -2,7 +2,7 @@ const assert = require('chai').assert
 describe('encoding', () => {
   const encoding = require('../src/encoding')
 
-  it('will encoding hex by default', () => {
+  it('hex by default', () => {
     const result = encoding('80')
     assert(  Buffer.isBuffer( result ) )
     assert.equal( result.length, 1 )

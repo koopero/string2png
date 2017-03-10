@@ -2,7 +2,7 @@ const assert = require('chai').assert
 describe('channels', () => {
   const channels = require('../src/channels')
 
-  it('will channels hex by default', () => {
+  it('hex by default', () => {
     const result = channels('ff0000,00ffff')
     assert.isArray( result )
     assert.equal( result.length, 2 )
