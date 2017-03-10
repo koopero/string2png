@@ -6,7 +6,7 @@ var options = argv
 const Promise = require('bluebird')
     , os = require('os')
 
-var data = options._.join('')
+var data = options._.join(' ')
 return Promise.resolve( require('get-stdin')() )
   .then( ( stdin ) => {
     data += stdin
