@@ -2,6 +2,12 @@
 It is intended to ease the creation of extremely low resolution graphical assets
 such as gradient and patterns.
 
+# Installation
+
+``` sh
+npm install -g string2png
+```
+
 # Examples
 
 *Note: All images have been scaled up 64x to ease viewing.*
