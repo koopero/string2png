@@ -1,3 +1,4 @@
+'use strict'
 const Promise = require('bluebird')
     , fs = Promise.promisifyAll( require('fs') )
     , mkdirp = Promise.promisify( require('mkdirp') )

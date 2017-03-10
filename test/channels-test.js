@@ -1,3 +1,4 @@
+'use strict'
 const assert = require('chai').assert
 describe('channels', () => {
   const channels = require('../src/channels')

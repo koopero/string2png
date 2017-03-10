@@ -1,3 +1,4 @@
+'use strict'
 const assert = require('chai').assert
 describe('bytes', () => {
   const bytes = require('../src/bytes')

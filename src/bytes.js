@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = function bytes( data, options ) {
   if ( !Buffer.isBuffer( data ) )
     data = require('./encoding')( data, options )

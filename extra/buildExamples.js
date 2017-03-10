@@ -1,4 +1,5 @@
-console.log('Note: This script requires ImageMagick to be installed')
+'use strict'
+console.warn('Note: This script requires ImageMagick to be installed')
 
 const exec = require('handleshells').exec
     , Promise = require('bluebird')

@@ -1,3 +1,4 @@
+'use strict'
 module.exports = decode
 
 const DIVISOR = {
@@ -38,7 +39,7 @@ function decode( data, options ) {
 
       if ( options.bytes && options.bytes !== 4 )
         throw new Error(`Invalid bytes for encoding ${encoding} ( must be 4 )`)
-        
+
       options.bytes = 4
       return floatBuffer( data )
     break

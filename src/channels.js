@@ -1,3 +1,5 @@
+'use strict'
+
 const fill = require('./fill')
     , Colour = require('deepcolour')
 

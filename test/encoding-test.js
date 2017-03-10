@@ -1,3 +1,4 @@
+'use strict'
 const assert = require('chai').assert
 describe('encoding', () => {
   const encoding = require('../src/encoding')

@@ -1,3 +1,4 @@
+'use strict'
 module.exports = function datauri( data, options ) {
   if ( !Buffer.isBuffer( data ) )
     data = require('./png')( data, options )

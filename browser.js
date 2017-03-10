@@ -1,3 +1,4 @@
+'use strict'
 const pixels2png = exports
 
 pixels2png.bytes = require('./src/bytes')
