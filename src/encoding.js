@@ -1,6 +1,8 @@
 'use strict'
 module.exports = decode
 
+const bufferFrom = require('buffer-from')
+
 const DIVISOR = {
   float: 1,
   percent: 100,
@@ -20,14 +22,14 @@ function decode( data, options ) {
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
       if ( data.length & 1 )
         data = data.substr(0,data.length-1)
-      return Buffer.from( data, encoding )
+      return bufferFrom( data, encoding )
     break
 
     case 'hex2':
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
       data = data.split('').map( v=>v+v ).join('')
       encoding = 'hex'
-      return Buffer.from( data, encoding )
+      return bufferFrom( data, encoding )
     break
 
     case 'float':
