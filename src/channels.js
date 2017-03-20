@@ -1,7 +1,7 @@
 'use strict'
 
-const fill = require('./fill')
-    , Colour = require('deepcolour')
+var fill = require('./fill')
+  , Colour = require('deepcolour')
 
 module.exports = function channels( data, options ) {
   if ( !Array.isArray( data ) )
@@ -26,13 +26,13 @@ module.exports = function channels( data, options ) {
   if ( !channels.length )
     return []
 
-  let stride = options.stride = parseInt( options.stride ) || channels.length
-  let length = Math.ceil( data.length / stride )
-  let result = fill( [], length, options )
+  var stride = options.stride = parseInt( options.stride ) || channels.length
+  var length = Math.ceil( data.length / stride )
+  var result = fill( [], length, options )
 
-  for ( let index = 0; index < length; index ++ ) {
-    for ( let j = 0; j < stride; j ++ ) {
-      let value = data[index*stride+j]
+  for ( var index = 0; index < length; index ++ ) {
+    for ( var j = 0; j < stride; j ++ ) {
+      var value = data[index*stride+j]
       result[index].setChannelByName( channels[j], value )
     }
   }

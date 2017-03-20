@@ -1,5 +1,7 @@
 'use strict'
-const string2png = exports
+require('buffer-concat/polyfill')
+
+var string2png = exports
 
 string2png.bytes = require('./src/bytes')
 string2png.channels = require('./src/channels')

@@ -10,30 +10,20 @@
   "scripts": {
     "test": "mocha"
   },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "author": "Samm Cooper <koopero@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "buffer-concat": "^1.0.0",
     "buffer-from": "^0.1.1",
     "deepcolour": "^1.2.0",
     "get-stdin": "^5.0.1",
+    "isbuffer": "0.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "pngjs": "^3.0.1"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.24.0",
-    "babelify": "^7.3.0",
     "chai": "^3.5.0",
     "handleshells": "^0.1.1"
   },

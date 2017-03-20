@@ -1,21 +1,22 @@
 'use strict'
 module.exports = decode
 
-const bufferFrom = require('buffer-from')
+var bufferFrom = require('buffer-from')
+  , isBuffer = require('isbuffer')
 
-const DIVISOR = {
+var DIVISOR = {
   float: 1,
   percent: 100,
   dec: 255
 }
 
 function decode( data, options ) {
-  if ( Buffer.isBuffer( data ) )
+  if ( isBuffer( data ) )
     return data
 
   options = options || {}
 
-  let encoding = options.encoding || 'hex'
+  var encoding = options.encoding || 'hex'
 
   switch( encoding ) {
     case 'hex':
@@ -27,7 +28,7 @@ function decode( data, options ) {
 
     case 'hex2':
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
-      data = data.split('').map( v=>v+v ).join('')
+      data = data.split('').map( function(v) { return v+v } ).join('')
       encoding = 'hex'
       return bufferFrom( data, encoding )
     break
@@ -35,24 +36,24 @@ function decode( data, options ) {
     case 'float':
     case 'percent':
     case 'dec':
-      let divisor = DIVISOR[encoding]
+      var divisor = DIVISOR[encoding]
       data = allNumbers( data )
-      data = data.map( ( v ) => v / divisor )
+      data = data.map( function ( v ) { return v / divisor } )
 
       if ( options.bytes && options.bytes !== 4 )
-        throw new Error(`Invalid bytes for encoding ${encoding} ( must be 4 )`)
+        throw new Error("Invalid bytes for encoding "+encoding+" ( must be 4 )")
 
       options.bytes = 4
       return floatBuffer( data )
     break
 
     default:
-      throw new Error(`Invalid encoding ${encoding}`)
+      throw new Error("Invalid encoding "+encoding)
   }
 
 
   function allNumbers( data ) {
-    let result = []
+    var result = []
     data.replace( /\-?\d+(\.\d+)?/g, function( match ) {
       result.push( parseFloat( match ) )
     } )
@@ -61,10 +62,10 @@ function decode( data, options ) {
   }
 
   function floatBuffer( data ) {
-    let size = 4
-    let length = data.length
-    let result = Buffer.alloc( size * length )
-    for ( let i = 0; i < length; i ++ )
+    var size = 4
+    var length = data.length
+    var result = Buffer.alloc( size * length )
+    for ( var i = 0; i < length; i ++ )
       result.writeFloatBE( data[i], i * size )
     return result
   }

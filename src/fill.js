@@ -1,8 +1,8 @@
 'use strict'
 module.exports = fill
 
-const bytes = require('./bytes')
-    , Colour = require('deepcolour')
+var bytes = require('./bytes')
+  , Colour = require('deepcolour')
 
 function fill( data, length, options ) {
   var background
@@ -12,9 +12,9 @@ function fill( data, length, options ) {
   if ( data.length > length )
     data = data.slice(0,length)
 
-  for ( let i = 0; i < length; i ++ ) {
+  for ( var i = 0; i < length; i ++ ) {
     if ( !Colour.isColour( data[i] ) ) {
-      let colour = new Colour( options.background )
+      var colour = new Colour( options.background )
       colour.set( data[i] )
       data[i] = colour
     }

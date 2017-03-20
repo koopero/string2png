@@ -1,23 +1,25 @@
 'use strict'
 
+var isBuffer = require('isbuffer')
+
 module.exports = function bytes( data, options ) {
-  if ( !Buffer.isBuffer( data ) )
+  if ( !isBuffer( data ) )
     data = require('./encoding')( data, options )
 
   options = options || {}
   var bytes = parseInt( options['bytes'] ) || 1
 
-  let k = data.length / bytes
-  let result = new Array()
+  var k = data.length / bytes
+  var result = new Array()
 
   switch ( bytes ) {
     case 1:
-      for ( let i = 0; i < k; i ++ )
+      for ( var i = 0; i < k; i ++ )
         result[i] = data.readUInt8( i ) / 255.0
     break
 
     case 4:
-      for ( let i = 0; i < k; i ++ )
+      for ( var i = 0; i < k; i ++ )
         result[i] = data.readFloatBE( i * 4 )
     break
 

@@ -3,8 +3,8 @@
 var argv = require('minimist')(process.argv.slice(2))
 var options = argv
 
-const Promise = require('bluebird')
-    , os = require('os')
+var Promise = require('bluebird')
+  , os = require('os')
 
 var data = options._.join(' ')
 return Promise.resolve( require('get-stdin')() )
@@ -12,7 +12,7 @@ return Promise.resolve( require('get-stdin')() )
     data += stdin
     data = require('./png')( data, options )
 
-    let output = options['output'] || options['o']
+    var output = options['output'] || options['o']
 
     if ( output ) {
       return require('./output')( data, output, options )

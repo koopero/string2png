@@ -1,25 +1,25 @@
 'use strict'
 module.exports = png
 
-const channels = require('./channels')
-    , fill = require('./fill')
+var channels = require('./channels')
+  , fill = require('./fill')
+  , packer = require( 'pngjs/lib/packer-sync.js' )
 
-const packer = require( 'pngjs/lib/packer-sync.js' )
 function png( data, options ) {
   data = channels( data, options )
 
   options = options || {}
 
-  let width = parseInt( options.width ) || data.length
-  let height = parseInt( options.height ) || Math.ceil( data.length / width )
+  var width = parseInt( options.width ) || data.length
+  var height = parseInt( options.height ) || Math.ceil( data.length / width )
 
   data = fill( data, width * height, options )
-  data = data.map( ( c ) => c.toBuffer( 4 ) )
+  data = data.map( function ( c ) { return c.toBuffer( 4 ) } )
   data = Buffer.concat( data )
   data = {
-    width,
-    height,
-    data
+    width:width,
+    height:height,
+    data:data
   }
 
   data = packer( data )
