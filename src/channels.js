@@ -9,7 +9,7 @@ module.exports = function channels( data, options ) {
 
   options = options || {}
 
-  let channels = options.channels || 'rgb'
+  var channels = options.channels || 'rgb'
 
   if ( 'number' == typeof channels ) {
     channels = parseInt( channels ) || 0

@@ -5,7 +5,7 @@ module.exports = function bytes( data, options ) {
     data = require('./encoding')( data, options )
 
   options = options || {}
-  let bytes = parseInt( options['bytes'] ) || 1
+  var bytes = parseInt( options['bytes'] ) || 1
 
   let k = data.length / bytes
   let result = new Array()
