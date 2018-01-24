@@ -54,7 +54,7 @@ function decode( data, options ) {
 
   function allNumbers( data ) {
     var result = []
-    data.replace( /\-?\d+(\.\d+)?/g, function( match ) {
+    data.replace( /[\-\+]?\d+(\.\d+)?([Ee][\-\+]?\d+)?/g, function( match ) {
       result.push( parseFloat( match ) )
     } )
 

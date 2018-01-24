@@ -23,5 +23,13 @@ describe('bytes', () => {
       assert.equal( result.length, 4 )
       assert.equal( result[2], -0.25 )
     })
+
+    it('will parse exponential numbers', () => {
+      const result = bytes('1e+4 1.0E4 extra data', { encoding: 'float' } )
+      assert.equal( result.length, 2 )
+      assert.equal( result[0], 10000 )
+      assert.equal( result[1], 10000 )
+
+    })
   })
 })
