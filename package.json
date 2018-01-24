@@ -1,6 +1,6 @@
 {
   "name": "string2png",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Convert strings in various formats to tiny images",
   "main": "index.js",
   "browser": "browser.js",
@@ -13,7 +13,7 @@
   "author": "Samm Cooper <koopero@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.5.1",
     "buffer-concat": "^1.0.0",
     "buffer-from": "^0.1.1",
     "deepcolour": "^1.3.0",
@@ -21,7 +21,7 @@
     "isbuffer": "0.0.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "pngjs": "^3.0.1"
+    "pngjs": "^3.3.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",

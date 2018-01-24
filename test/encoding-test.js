@@ -23,4 +23,5 @@ describe('encoding', () => {
       assert.equal( result.length, 16 ) // sizeof(float) * 4
     })
   })
+
 })
