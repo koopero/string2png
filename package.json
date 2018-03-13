@@ -1,6 +1,6 @@
 {
   "name": "string2png",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Convert strings in various formats to tiny images",
   "main": "index.js",
   "browser": "browser.js",
@@ -8,7 +8,7 @@
     "string2png": "./src/cli.js"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Samm Cooper <koopero@gmail.com>",
   "license": "MIT",
@@ -25,7 +25,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "handleshells": "^0.1.1"
+    "handleshells": "^0.1.1",
+    "mocha": "^5.0.4"
   },
   "repository": {
     "type": "git",
