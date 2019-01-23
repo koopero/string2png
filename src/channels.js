@@ -6,6 +6,8 @@ var fill = require('./fill')
 module.exports = function channels( data, options ) {
   if ( !Array.isArray( data ) )
     data = require('./bytes')( data, options )
+  else if ( isAllColours( data ) )
+    return data
 
   options = options || {}
 
@@ -33,9 +35,18 @@ module.exports = function channels( data, options ) {
   for ( var index = 0; index < length; index ++ ) {
     for ( var j = 0; j < stride; j ++ ) {
       var value = data[index*stride+j]
-      result[index].setChannelByName( channels[j], value )
+      result[index].setChannel( channels[j], value )
     }
   }
 
   return result
+}
+
+
+function isAllColours( data ) {
+  for ( let i = 0; i < data.length; i ++ )
+    if ( !data[i].length )
+      return false
+ 
+  return true
 }
