@@ -32,8 +32,17 @@ module.exports = function normalize( data, measured, options ) {
     let value = data[index]
     let min = parseFloat( measured[0][channel] )
     let max = parseFloat( measured[1][channel] )
-    result[index] = ( ( value - min ) / ( max - min ) || 0 )
+    // console.log({ value, logarithmic, min, max })
+    result[index] = mix( 
+      ( ( value - min ) / ( max - min ) || 0 ),
+      Math.pow( Math.E, Math.max( 0, Math.log( value - min ) ) / Math.log( max - min ) ),
+      logarithmic
+    )
   }
 
   return result
+}
+
+function mix( a, b, c ) {
+  return ( a * ( 1-c) ) + b * c
 }

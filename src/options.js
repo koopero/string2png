@@ -23,9 +23,18 @@ function options( opt ) {
     result.normalize = 0
   }
 
+  if ( opt['logarithmic'] ) {
+    result.logarithmic = parseInt( opt['logarithmic'] ) || 1
+  } else {
+    result.logarithmic = 0
+  }
 
   result.encoding = opt.encoding
   result.bytes = opt.bytes
+  result.input = opt.input
+  result.square = !!opt.square
+
+
 
 
   return result

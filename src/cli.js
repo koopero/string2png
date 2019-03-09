@@ -1,26 +1,49 @@
 #!/usr/bin/env node
-'use strict'
-var argv = require('minimist')(process.argv.slice(2))
-var options = argv
+exports.execute = execute
 
-var Promise = require('bluebird')
-  , os = require('os')
+if ( module == require.main ) {
+  const argv = require('minimist')(process.argv.slice(2))
+  execute( argv )
+}
 
-var data = options._.join(' ')
-return Promise.resolve( require('get-stdin')() )
-  .then( ( stdin ) => {
-    data += stdin
-    data = require('./png')( data, options )
+async function execute( options ) {
+  const Promise = require('bluebird')
+  const os = require('os')
+  const fs = require('fs-extra')
+  
+  var data = ''
+  
+  // Get minimist data
+  if ( options._ )
+    data += options._.join(' ')
 
-    var output = options['output'] || options['o']
+  return Promise.resolve( require('get-stdin')() )
+    .then( async ( stdin ) => {
 
-    if ( output ) {
-      return require('./output')( data, output, options )
-    }
+      data += stdin
+      data += await require('./input')( options )
 
-    if ( !options['raw'] )
-      data = require('./datauri')( data, options )+os.EOL
+      let floats = require('./normalize')( data, options )
+      let measured = require('./measure')( floats, options )
 
-    process.stdout.write( data )
-  })
-  .then( () => data )
+      data = require('./channels')( data, options )
+      data = require('./png')( data, options )
+  
+      var output = options['output'] || options['o']
+
+      if ( options.measure ) {
+        await fs.outputJSON( options.measure, measured )
+      }
+  
+      if ( output )
+        return require('./output')( data, output, options )
+  
+      if ( !options['raw'] )
+        data = require('./datauri')( data, options )+os.EOL
+  
+      process.stdout.write( data )
+    })
+    .then( () => data )
+  
+}
+

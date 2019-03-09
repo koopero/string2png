@@ -19,6 +19,10 @@ function decode( data, options ) {
   var encoding = options.encoding || 'hex'
 
   switch( encoding ) {
+    case 'ascii':
+    case 'utf8':
+      return bufferFrom( data, encoding )
+
     case 'hex':
     case 'hex2':
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
