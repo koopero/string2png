@@ -6,7 +6,7 @@ module.exports = function bytes( data, options ) {
   if ( !isBuffer( data ) )
     data = require('./encoding')( data, options )
 
-  options = options || {}
+  options = require('./options')( options )
   var bytes = parseInt( options['bytes'] ) || 1
 
   var k = data.length / bytes

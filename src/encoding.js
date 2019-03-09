@@ -20,17 +20,15 @@ function decode( data, options ) {
 
   switch( encoding ) {
     case 'hex':
-      data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
-      if ( data.length & 1 )
-        data = data.substr(0,data.length-1)
-      return bufferFrom( data, encoding )
-    break
-
     case 'hex2':
       data = data.replace(/[^0-9a-fA-F]/gi, '' ).toUpperCase()
-      data = data.split('').map( function(v) { return v+v } ).join('')
-      encoding = 'hex'
-      return bufferFrom( data, encoding )
+      if ( encoding == 'hex2' )
+        data = data.split('').map( function(v) { return v+v } ).join('')
+      
+      if ( data.length & 1 )
+        data = data.substr(0,data.length-1)
+      
+      return bufferFrom( data, 'hex' )
     break
 
     case 'float':
