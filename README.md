@@ -100,13 +100,16 @@ echo 00ff00 | string2png
 - **decimal** -  Like `float`, except divide by `255`. Example: `220,20,60 - CSS Crimson`
 - **ascii** - Interpret data as 8 bit binary.
 
-
 ### channels
 
 A string or array list of colour channels to be interpreted from input, in the order they are to be parsed. The default is
 `rgb`. Supported channels are `rgba` and `hsv`. See [examples](example/README.md) for many different usages of the `channels` option.  
 
 Any unrecognized channel will be parsed and thrown out, allowing padding within data.
+
+### input
+
+Load any number of files or urls, and append to data. URLs will be loaded with the [request](https://npmjs.org/package/request) module. 
 
 ### width
 
@@ -130,8 +133,8 @@ value can be altered by input data on a channel-by-channel basis. See example [a
 
 ### raw
 
-Dump data to `stdout` as binary, rather than datauri.
+Dump data to `stdout` as binary, rather than datauri. Only on CLI.
 
 ### normalize
 
-Specify 
+Specify number of columns to normalize.

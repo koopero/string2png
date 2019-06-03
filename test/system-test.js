@@ -11,7 +11,6 @@ describe('system', () => {
       width: 3 * 7,
       channels: 'rgb',
       normalize: 9,
-      logarithmic: 1,
       encoding: 'float',
       bytes: 4,
       measure: resolveTest('scratch/weather.json'),
@@ -33,7 +32,6 @@ describe('system', () => {
       channels: 'rgb',
       encoding: 'hex',
       normalize: 3,
-      logarithmic: 1,
       output: resolveTest('scratch/glitch.png'),
     }
 

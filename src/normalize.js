@@ -19,7 +19,6 @@ module.exports = function normalize( data, measured, options ) {
     measured = require('./measure')( data, options )
   }
 
-  let logarithmic = options.logarithmic
   let result = []
 
   for ( let index = 0; index < data.length; index ++ ) {
@@ -27,12 +26,7 @@ module.exports = function normalize( data, measured, options ) {
     let value = data[index]
     let min = parseFloat( measured[0][channel] )
     let max = parseFloat( measured[1][channel] )
-    // console.log({ value, logarithmic, min, max })
-    result[index] = mix( 
-      ( ( value - min ) / ( max - min ) || 0 ),
-      Math.pow( Math.E, Math.max( 0, Math.log( value - min ) ) / Math.log( max - min ) ),
-      logarithmic
-    )
+    result[index] = ( ( value - min ) / ( max - min ) || 0 )
   }
 
   return result

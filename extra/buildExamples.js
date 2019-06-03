@@ -48,7 +48,6 @@ async function eachExample( example ) {
     ![${cmdStr}](${enlargedName})
   `
 
-  console.log( options )
   await main( { data, output, ...options } )
   let enlarge = `convert ${ output } -interpolate Nearest -filter Point -resize ${ scale } -define png:format=png32 -strip ${ enlarged }`
   let execOpt = {
