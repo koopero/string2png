@@ -12,7 +12,6 @@ module.exports = function measure( data, options ) {
   let min = []
   let max = []
 
-
   for ( let index = 0; index < data.length; index ++ ) {
     let channel = index % channels
     let value = data[index]

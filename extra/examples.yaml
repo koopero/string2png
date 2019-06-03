@@ -72,3 +72,33 @@
   data: ff00ffEEEEEE ffff00EEEEEE
   options:
     channels: rgb000
+
+- name: readmeneon
+  description: README.md as neon glitch.
+  scale: 4
+  options: 
+    input: README.md
+    square: 1
+    normalize: 1
+    encoding: ascii
+    background: red
+    channels: hsv
+
+- name: wikienglish
+  description: Download english wikipedia page and make noise square.
+  scale: 2
+  options: 
+    input: https://en.wikipedia.org/wiki/Main_Page
+    square: 1
+    channels: rgb
+    encoding: ascii
+
+- name: wikikartoli
+  description: Same thing with Kartoli wikipedia page. Notice unicode characters appearing as highlights.
+  scale: 2
+  options: 
+    input: https://ka.wikipedia.org/wiki/%E1%83%9B%E1%83%97%E1%83%90%E1%83%95%E1%83%90%E1%83%A0%E1%83%98_%E1%83%92%E1%83%95%E1%83%94%E1%83%A0%E1%83%93%E1%83%98
+    square: 1
+    channels: rgb
+    encoding: ascii
+    

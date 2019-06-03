@@ -23,9 +23,9 @@ async function execute( options ) {
       data += stdin
       data += await require('./input')( options )
 
-      let floats = require('./normalize')( data, options )
-      let measured = require('./measure')( floats, options )
-
+      data = require('./bytes')( data, options )
+      let measured = require('./measure')( data, options )
+      data = require('./normalize')( data, measured, options )
       data = require('./channels')( data, options )
       data = require('./png')( data, options )
   

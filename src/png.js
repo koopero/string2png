@@ -7,12 +7,12 @@ var channels = require('./channels')
 
 function png( data, options ) {
   data = channels( data, options )
-
   options = options || {}
 
   var width = parseInt( options.width )
   if ( !width )
     width = options.square ? Math.floor( Math.sqrt( data.length ) ) : data.length
+
   var height = parseInt( options.height ) || Math.floor( data.length / width )
 
   data = fill( data, width * height, options )

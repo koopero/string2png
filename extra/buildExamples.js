@@ -1,13 +1,14 @@
 'use strict'
 console.warn('Note: This script requires ImageMagick to be installed')
 
-const exec = require('handleshells').exec
+const exec = require('child_process').exec
     , Promise = require('bluebird')
     , yaml = require('js-yaml')
     , fs = Promise.promisifyAll(require('fs'))
     , path = require('path')
+    , deindent = require('deindent')
     , resolve = path.resolve.bind( path, __dirname, '..' )
-    , output = require('../src/output')
+    , main = require('../index')
 
 const cli = resolve( 'src','cli.js')
 
@@ -23,32 +24,39 @@ return fs.readFileAsync( resolve('extra','exampleHeader.md'),'utf8')
 .then( ( markdowns ) => mdHeader + markdowns.join('\n\n') )
 .then( ( markdown ) => fs.writeFileAsync( mdFile, markdown ))
 
-function eachExample( example ) {
+async function eachExample( example ) {
   const name = example.name
       , options = example.options
       , optionsStr = stringifyOptions( options )
       , data = example.data
       , destFile =  `${name}.png`
-      , destAbs = resolve('example', destFile )
+      , output = path.join( 'example', destFile )
       , enlargedName = `${name}-enlarged.png`
-      , enlarged = resolve('example', enlargedName )
+      , enlarged = path.join( 'example', enlargedName )
       , cmdStr = `string2png ${optionsStr} ${data} -o example/${destFile}`
+      , scale = (example.scale || '48') + '00%'
 
-  let markdown =
-`## ${name}
 
-${example.description}
-\`\`\` sh
-${cmdStr}
-\`\`\`
-![${cmdStr}](${enlargedName})
-`
 
-  console.log(cmdStr)
-  return output( data, destAbs, options )
-  .then( () => exec('convert {{ destAbs }} -interpolate Nearest -filter Point -resize 6400% -define png:format=png32 -strip {{ enlarged }}', { destAbs, enlarged } ) )
-  .then( () => markdown )
+  let markdown = deindent`
+    ## ${name}
 
+    ${example.description}
+    \`\`\` sh
+    ${cmdStr}
+    \`\`\`
+    ![${cmdStr}](${enlargedName})
+  `
+
+  console.log( options )
+  await main( { data, output, ...options } )
+  let enlarge = `convert ${ output } -interpolate Nearest -filter Point -resize ${ scale } -define png:format=png32 -strip ${ enlarged }`
+  let execOpt = {
+    cwd: resolve(),
+    shell: true,
+  }
+  await Promise.fromCallback( cb => exec( enlarge, execOpt, cb ) )
+  return markdown
 }
 
 function stringifyOptions( options ) {

@@ -26,7 +26,7 @@ describe('system', () => {
   })
 
   it('will create glitchy PNG from this file', async () => {
-    const cli = require('../src/cli')
+    const string2png = require('../index')
     const opt = {
       input: resolveTest( 'system-test.js' ),
       square: true,
@@ -37,7 +37,7 @@ describe('system', () => {
       output: resolveTest('scratch/glitch.png'),
     }
 
-    await require('../src/cli').execute( opt )
+    await string2png( opt )
 
 
     let resultPNG = await fs.readFile( resolveTest('scratch/glitch.png' ) )

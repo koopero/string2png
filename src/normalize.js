@@ -1,7 +1,6 @@
 const isNumberArray = require('./util/isNumberArray')
 
 module.exports = function normalize( data, measured, options ) {
-  // console.log( arguments )
   if ( !Array.isArray( measured ) ) {
     options = measured
     measured = null
@@ -10,12 +9,8 @@ module.exports = function normalize( data, measured, options ) {
   options = require('./options')( options )
   let channels = options.normalize
 
-  // console.log( { measured, data, options } )
-
   if ( !isNumberArray( data ) )
     data = require('./bytes')( data, options )
-
-  // console.log( { measured, data, options })
 
   if ( !channels )
     return data

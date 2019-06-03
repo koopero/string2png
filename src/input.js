@@ -13,6 +13,7 @@ async function input( opt ) {
     inputs = [ inputs ] 
 
   for ( let input of inputs ) {
+    if ( !input )  continue
     let url = urllib.parse( input )
     url.protocol = url.protocol || 'file:'
 
@@ -21,10 +22,6 @@ async function input( opt ) {
     } else {
       result += await request( { url } )
     }
-
-
-
-    url = urllib.format( url )
   }
 
   return result

@@ -1,6 +1,7 @@
 `string2png` is a small, flexible utility to compile strings to PNG images files.
 It is intended to ease the creation of extremely low resolution graphical assets
-such as gradient and patterns.
+such as gradient and patterns. It may also be used for abstract data visualization 
+and glitch sourcing.
 
 # Installation
 
@@ -10,7 +11,7 @@ npm install -g string2png
 
 # Examples
 
-*Note: All images have been scaled up 64x to ease viewing.*
+*Note: All images have been enlarged to ease viewing. Actual output is miniscule.*
 
 ## rgb
 
@@ -27,6 +28,14 @@ Checkboard pattern
 string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.png
 ```
 ![string2png --encoding hex2 --width 2 --channels v f00f -o example/checkerboard.png](example/checkerboard-enlarged.png)
+
+## glitch
+
+This page as glitch.
+``` sh
+string2png --input README.md --square --normalize 1 --encoding ascii --background red --channels hsv --output example/readme.png
+```
+![string2png --input README.md --square --normalize 1 --encoding ascii --background red --channels hsv --output example/readme.png](example/readmeneon-enlarged.png)
 
 
 See [example/README.md](example/README.md) for more examples.
@@ -57,6 +66,15 @@ let buffer = string2png.png( 'ff0000 00ff00 0000ff', options )
 
 // Return PNG as data URI
 let data = string2png.datauri( 'ff0000 00ff00 0000ff', options )  
+
+// Get normalization parameters
+let { data, measured } = await string2png( {
+  input: 'yourdatafile.csv',
+  encoding: 'float',
+  normalize: 6,
+  measure: true,
+  channels: 'v',
+})
 ```
 
 
@@ -80,6 +98,7 @@ echo 00ff00 | string2png
 - **float** - Search input data for all substrings that look like numbers. Any delimiter maybe be used. Example: `0.5 0 0 - CSS maroon`
 - **percent** - Like `float`, except divide by `100`. Example: `0 100% 100 - CSS Aqua`
 - **decimal** -  Like `float`, except divide by `255`. Example: `220,20,60 - CSS Crimson`
+- **ascii** - Interpret data as 8 bit binary.
 
 
 ### channels
@@ -100,7 +119,19 @@ to ensure a rectangular output.
 
 If `height` is specified, the output will be cropped or padded.
 
+### square
+
+If specified, `width` and `height` will be set to the square root of data length, providing a roughly square output.
+
 ### background
 
 The default value to use for pixel output. Any CSS string may be used. This colour
 value can be altered by input data on a channel-by-channel basis. See example [alter-red](example/README.md#alter-red)
+
+### raw
+
+Dump data to `stdout` as binary, rather than datauri.
+
+### normalize
+
+Specify 
