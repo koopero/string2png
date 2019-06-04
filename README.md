@@ -1,7 +1,7 @@
 `string2png` is a small, flexible utility to compile strings to PNG images files.
 It is intended to ease the creation of extremely low resolution graphical assets
-such as gradient and patterns. It may also be used for abstract data visualization 
-and glitch sourcing.
+such as gradient and patterns. It may also be used for abstract data visualization,
+glitch art and basic steganography.
 
 # Installation
 
@@ -91,6 +91,7 @@ echo 00ff00 | string2png
 
 # Options
 
+
 ### encoding
 
 - **hex** *default* - Parse hexadecimal data like CSS colours. All non-hex input will be ignored. Example: `ff0000`
@@ -106,6 +107,10 @@ A string or array list of colour channels to be interpreted from input, in the o
 `rgb`. Supported channels are `rgba` and `hsv`. See [examples](example/README.md) for many different usages of the `channels` option.  
 
 Any unrecognized channel will be parsed and thrown out, allowing padding within data.
+
+### data
+
+String containing data to be processed.
 
 ### input
 
@@ -133,8 +138,12 @@ value can be altered by input data on a channel-by-channel basis. See example [a
 
 ### raw
 
-Dump data to `stdout` as binary, rather than datauri. Only on CLI.
+Dump data to `stdout` as binary, rather than datauri. Does not affect `output`.
 
 ### normalize
 
-Specify number of columns to normalize.
+Specify number of columns to normalize. Each column will be normalized separately, mapping to a 0-1 range. Normalization is applied before `channels`. Best used with float `encoding`.
+
+### measure
+
+Output normalization parameters to a JSON file from command line.

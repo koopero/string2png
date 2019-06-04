@@ -35,7 +35,10 @@ module.exports = function channels( data, options ) {
   for ( var index = 0; index < length; index ++ ) {
     for ( var j = 0; j < stride; j ++ ) {
       var value = data[index*stride+j]
-      result[index].setChannel( channels[j], value )
+      let channelIndex = result[index].channelIndex( channels[j] )
+
+      if ( channelIndex != -1 )
+        result[index].setChannel( channelIndex, value )
     }
   }
 

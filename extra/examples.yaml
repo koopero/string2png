@@ -101,4 +101,15 @@
     square: 1
     channels: rgb
     encoding: ascii
-    
+
+- name: weather
+  description: Visualization of weather data, using normalization and selection of a single column from three column original data. See [../test/hourly.tsv](../test/hourly.tsv) for input.
+  scale: 8
+  options:
+    input: test/hourly.tsv
+    width: 24
+    channels: vEE
+    normalize: 3
+    measure: 1
+    encoding: float
+

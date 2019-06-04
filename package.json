@@ -45,7 +45,9 @@
     "HSV",
     "generative",
     "art",
-    "minimal graphics"
+    "minimal graphics",
+    "data visualization",
+    "glitch art"
   ],
   "bugs": {
     "url": "https://github.com/koopero/string2png/issues"

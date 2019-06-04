@@ -28,7 +28,7 @@ async function eachExample( example ) {
   const name = example.name
       , options = example.options
       , optionsStr = stringifyOptions( options )
-      , data = example.data
+      , data = example.data || ''
       , destFile =  `${name}.png`
       , output = path.join( 'example', destFile )
       , enlargedName = `${name}-enlarged.png`
@@ -48,13 +48,24 @@ async function eachExample( example ) {
     ![${cmdStr}](${enlargedName})
   `
 
-  await main( { data, output, ...options } )
+  let { measured } = await main( { data, output, ...options } )
   let enlarge = `convert ${ output } -interpolate Nearest -filter Point -resize ${ scale } -define png:format=png32 -strip ${ enlarged }`
   let execOpt = {
     cwd: resolve(),
     shell: true,
   }
   await Promise.fromCallback( cb => exec( enlarge, execOpt, cb ) )
+
+  if ( measured ) {
+    markdown += deindent`
+      Normalization parameters output:
+
+      \`\`\` json
+      ${JSON.stringify( measured ) }
+      \`\`\`
+    `
+  }
+
   return markdown
 }
 
