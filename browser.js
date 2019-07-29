@@ -2,7 +2,6 @@
 require('buffer-concat/polyfill')
 
 const string2png = require('./src/main')
-string2png.input = require('./src/input')
 string2png.bytes = require('./src/bytes')
 string2png.channels = require('./src/channels')
 string2png.encoding = require('./src/encoding')
