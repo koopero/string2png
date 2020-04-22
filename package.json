@@ -8,7 +8,9 @@
     "string2png": "./src/cli.js"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "Samm Cooper <samm@hfour.ca>",
   "license": "MIT",
@@ -24,7 +26,8 @@
     "mkdirp": "^0.5.1",
     "pngjs": "^3.3.1",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -52,5 +55,6 @@
   "bugs": {
     "url": "https://github.com/koopero/string2png/issues"
   },
-  "homepage": "https://github.com/koopero/string2png#readme"
+  "homepage": "https://github.com/koopero/string2png#readme",
+  "snyk": true
 }
